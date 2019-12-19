@@ -566,8 +566,6 @@
          ''}"></div>
         <div class="card-number" id="cardNumberField" bind:this={cardNumberField}>
 
-
-
             <div class="digit-item">
                 <div class="num {res.length > 0 ? 'not-active' : ''}">#</div>
                 <div class="num {res.length > 0 ? 'active' : ''}">{res[0] || ""}</div>
