@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="63a1ed41-06a6-4846-a18d-5c90ad191024" name="Default Changelist" comment="" />
+    <list default="true" id="63a1ed41-06a6-4846-a18d-5c90ad191024" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/components/Card.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Card.svelte" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -158,12 +160,12 @@
       <workItem from="1572615630766" duration="5037000" />
       <workItem from="1575623014008" duration="5661000" />
       <workItem from="1575882545805" duration="48408000" />
-      <workItem from="1576140987529" duration="65419000" />
+      <workItem from="1576140987529" duration="66027000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="196637000" />
+    <option name="totallyTimeSpent" value="196629000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1928" y="-8" width="1936" height="1056" extended-state="6" />
@@ -327,8 +329,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Card.svelte">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1558">
-          <caret line="684" column="17" selection-start-line="684" selection-start-column="17" selection-end-line="684" selection-end-column="17" />
+        <state relative-caret-position="212">
+          <caret line="681" column="48" lean-forward="true" selection-start-line="681" selection-start-column="48" selection-end-line="681" selection-end-column="48" />
         </state>
       </provider>
     </entry>
