@@ -1,108 +1,61 @@
 <script >
     import { onMount } from 'svelte';
-    let cardNumber;
-    let cardNumberField;
     let res = [];
     let nameString = [];
     let cvvString = [];
-    let monthString;
-    let yearString;
     let on = false;
     let numberFocus = false;
     let nameFocus = false;
     let dateFocus = false;
-    let cardMonths;
-    let cardYear;
     let monthMass = ["MM"];
-    let monthMass2 = ["MM"];
     let yearMass = ["ГГ"];
-    let yearMass2 = ["ГГ"];
-    let first;
-    let last;
     let thisNumber;
     let thisHolder;
+    let thisCvv;
     let thisMonth;
     let thisYear;
     let fakeMassNumber = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
     let fakeMassName = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+    let massMonth = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"];
+    let massYear = [2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030];
+    let numberr;
 
-    onMount(async () => {
-        cardcode.addEventListener('input', formatCardCode);
-        cardcode2.addEventListener('input', inputName);
-        cardcode5.addEventListener('input', cvv);
-        cardcode3.addEventListener('change', changeMonth);
-        cardcode4.addEventListener('change', changeYear);
+    const formatCardCode = () => {
+       let cardCode = thisNumber.value.replace(/[^\d]/g, '').substring(0,16);
+       cardCode = cardCode != '' ? cardCode.match(/.{1,4}/g).join(' ') : '';
+       thisNumber.value = cardCode;
+       numberr.value = thisNumber.value.split(" ").join("");
+       let mass = cardcode.value.split('');
+       res = mass.map((item, index, array) => {
+           if(index > 3 && index < 14){
+               if (index == 4 || index == 9 || index == 14){
+                   return item;
+               }
+               return item = "*";
+           }
+           return item;
+       });
+   }
 
+   const inputName = () => {
+       nameString = thisHolder.value.split("");
+   }
 
+   const cvv = () => {
+       cvvString = thisCvv.value.split("");
+   }
 
-        function formatCardCode() {
-            let cardCode = this.value.replace(/[^\d]/g, '').substring(0,16);
-            cardCode = cardCode != '' ? cardCode.match(/.{1,4}/g).join(' ') : '';
-            this.value = cardCode;
-            myform.number.value=this.value.split(" ").join("");
+   const changeMonth = ({ target: { value }}) => {
+  	 monthMass = [ ...monthMass, value ]
+   }
 
+   $: offset = monthMass && monthMass.length > 1 ? offset - 24 : 0;
 
-            let mass = cardcode.value.split('');
-            res = mass.map((item, index, array) => {
-                if(index > 4 && index < 15){
-                    if (index == 9 || index == 14){
-                        return item = " ";
-                    }
-                    return item = "*";
-                }
-                return item;
-            });
-        }
+   const changeYear = ({ target: { value }}) => {
+     yearMass = [ ...yearMass, value ]
+   }
 
-        function inputName(){
-            nameString = this.value.split("");
-        }
-
-        function cvv(){
-            cvvString = this.value.split("");
-        }
-
-        function changeMonth(){
-            monthString = this.value;
-            //monthMass = [...monthMass, monthString]
-            monthMass.push(monthString);
-            let div = document.createElement('div');
-            div.className = "month";
-            div.style.transition = "all 0.5s";
-            div.innerHTML = monthString;
-            cardMonths.append(div);
-            setTimeout(function(){
-                document.querySelectorAll(".month")[0].classList.add("up");
-                document.querySelector(".up").style.marginTop = "-24px";
-                console.log(document.querySelector(".month"));
-            }, 100);
-
-            setTimeout(function(){
-                document.querySelector(".up").remove();
-            }, 500);
-        }
-
-        function changeYear(){
-            yearString = this.value;
-            //monthMass = [...monthMass, monthString]
-            yearMass.push(yearString);
-            let div = document.createElement('div');
-            div.className = "year";
-            div.style.transition = "all 0.5s";
-            div.innerHTML = yearString.substr(-2);
-            cardYear.append(div);
-            setTimeout(function(){
-                document.querySelectorAll(".year")[0].classList.add("up");
-                document.querySelector(".up").style.marginTop = "-24px";
-                console.log(document.querySelector(".year"));
-            }, 100);
-
-            setTimeout(function(){
-                document.querySelector(".up").remove();
-            }, 500);
-        }
-
-    });
+   $: offset2 = yearMass && yearMass.length > 1 ? offset2 - 24 : 0;
 
     const active = () => {on = true}
     const deactive = () => {on = false; numberFocus = false; nameFocus = false; dateFocus = false}
@@ -130,7 +83,6 @@
         -webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;
         font-size: 0;
         flex-wrap: wrap;
-        margin-bottom: 30px;
         -webkit-transition: all 0.8s cubic-bezier(0.71, 0.03, 0.56, 0.85);
         -moz-transition: all 0.8s cubic-bezier(0.71, 0.03, 0.56, 0.85);
         -ms-transition: all 0.8s cubic-bezier(0.71, 0.03, 0.56, 0.85);
@@ -140,6 +92,13 @@
         transform: perspective(2000px) rotateY(0deg) rotateX(0deg) rotate(0deg);
         transform-style: preserve-3d;
         backface-visibility: hidden;
+        margin: 0 auto 30px;
+    }
+    .wrap-card-back {
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
     }
     .card-back {
         display: flex;
@@ -156,10 +115,7 @@
         -webkit-box-shadow: 0 0 0 0 #000;-moz-box-shadow: 0 0 0 0 #000;box-shadow: 0 0 0 0 #000;
         font-size: 0;
         flex-wrap: wrap;
-        margin-bottom: 30px;
-        position: absolute;
-        top: 0;
-        left: 0;
+        margin: 0 auto 30px;
         transform-style: preserve-3d;
         box-shadow: 0 20px 60px 0 rgba(14, 42, 90, 0.55);
         -webkit-transition: all 0.8s cubic-bezier(0.71, 0.03, 0.56, 0.85);
@@ -212,23 +168,34 @@
         font-size: 16px;
         margin-right: 50px;
     }
-    .card-months {
+    .card-month-wrap {
         display: inline-block;
         width: 38px;
         height: 25px;
-        overflow: hidden;
         color: #ffffff;
         -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;
         padding: 0 5px;
         -webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;
         font-size: 16px;
         text-align: center;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .card-month {
+        transition: transform 0.3s;
+        will-change: transform;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
     }
     .slash {
         color: #ffffff;
         font-size: 16px;
     }
-    .card-year {
+    .card-year-wrap {
         display: inline-block;
         width: 38px;
         height: 25px;
@@ -239,25 +206,31 @@
         -webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;
         font-size: 16px;
         text-align: center;
+        position: relative;
     }
-    .card-number .digit-item:nth-child(5),
-    .card-number .digit-item:nth-child(10),
-    .card-number .digit-item:nth-child(15) {
-        margin-right: 10px;
+    .card-year {
+        transition: transform 0.3s;
+        will-change: transform;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
     }
     .digit-item {
-    -webkit-transition: all 1s;-moz-transition: all 1s;-ms-transition: all 1s;-o-transition: all 1s;transition: all 1s;
+        -webkit-transition: all 1s;-moz-transition: all 1s;-ms-transition: all 1s;-o-transition: all 1s;transition: all 1s;
     }
     .digit-item.active {}
     .input-field {
         width: 450px;
+        margin: 0 auto;
     }
     .input-field input:first-child,
     .input-field input:nth-child(2) {
         width: 100%;
     }
     .card-number .num {
-        width: 20px;
+        width: 18px;
         height: 20px;
         overflow: hidden;
         margin-top: 2px;
@@ -562,152 +535,90 @@
 
 <div class="wrap-card {on ? 'active' : ''}">
     <div class="card">
-    <div class="focus {numberFocus ? 'focus-number' : ''} {nameFocus ? 'focus-name' : ''} {dateFocus ? 'focus-date' :
-         ''}"></div>
-        <div class="card-number" id="cardNumberField" bind:this={cardNumberField}>
-
-            <div class="digit-item">
-                <div class="num {res.length > 0 ? 'not-active' : ''}">#</div>
-                <div class="num {res.length > 0 ? 'active' : ''}">{res[0] || ""}</div>
-            </div>
-            <div class="digit-item">
-                <div class="num {res.length > 1 ? 'not-active' : ''}">#</div>
-                <div class="num {res.length > 1 ? 'active' : ''}">{res[1] || ""}</div>
-            </div>
-            <div class="digit-item">
-                <div class="num {res.length > 2 ? 'not-active' : ''}">#</div>
-                <div class="num {res.length > 2 ? 'active' : ''}">{res[2] || ""}</div>
-            </div>
-            <div class="digit-item">
-                <div class="num {res.length > 3 ? 'not-active' : ''}">#</div>
-                <div class="num {res.length > 3 ? 'active' : ''}">{res[3] || ""}</div>
-            </div>
-            <div class="digit-item"></div>
-            <div class="digit-item">
-                <div class="num {res.length > 5 ? 'not-active' : ''}">#</div>
-                <div class="num {res.length > 5 ? 'active' : ''}">{res[5] || ""}</div>
-            </div>
-            <div class="digit-item">
-                <div class="num {res.length > 6 ? 'not-active' : ''}">#</div>
-                <div class="num {res.length > 6 ? 'active' : ''}">{res[6] || ""}</div>
-            </div>
-            <div class="digit-item">
-                <div class="num {res.length > 7 ? 'not-active' : ''}">#</div>
-                <div class="num {res.length > 7 ? 'active' : ''}">{res[7] || ""}</div>
-            </div>
-            <div class="digit-item">
-                <div class="num {res.length > 8 ? 'not-active' : ''}">#</div>
-                <div class="num {res.length > 8 ? 'active' : ''}">{res[8] || ""}</div>
-            </div>
-            <div class="digit-item"></div>
-            <div class="digit-item">
-                <div class="num {res.length > 10 ? 'not-active' : ''}">#</div>
-                <div class="num {res.length > 10 ? 'active' : ''}">{res[10] || ""}</div>
-            </div>
-            <div class="digit-item">
-                <div class="num {res.length > 11 ? 'not-active' : ''}">#</div>
-                <div class="num {res.length > 11 ? 'active' : ''}">{res[11] || ""}</div>
-            </div>
-            <div class="digit-item">
-                <div class="num {res.length > 12 ? 'not-active' : ''}">#</div>
-                <div class="num {res.length > 12 ? 'active' : ''}">{res[12] || ""}</div>
-            </div>
-            <div class="digit-item">
-                <div class="num {res.length > 13 ? 'not-active' : ''}">#</div>
-                <div class="num {res.length > 13 ? 'active' : ''}">{res[13] || ""}</div>
-            </div>
-            <div class="digit-item"></div>
-            <div class="digit-item">
-                <div class="num {res.length > 15 ? 'not-active' : ''}">#</div>
-                <div class="num {res.length > 15 ? 'active' : ''}">{res[15] || ""}</div>
-            </div>
-            <div class="digit-item">
-                <div class="num {res.length > 16 ? 'not-active' : ''}">#</div>
-                <div class="num {res.length > 16 ? 'active' : ''}">{res[16] || ""}</div>
-            </div>
-            <div class="digit-item">
-                <div class="num {res.length > 17 ? 'not-active' : ''}">#</div>
-                <div class="num {res.length > 17 ? 'active' : ''}">{res[17] || ""}</div>
-            </div>
-            <div class="digit-item">
-                <div class="num {res.length > 18 ? 'not-active' : ''}">#</div>
-                <div class="num {res.length > 18 ? 'active' : ''}">{res[18] || ""}</div>
-            </div>
-
+        <div class="focus {numberFocus ? 'focus-number' : ''} {nameFocus ? 'focus-name' : ''} {dateFocus ?
+        'focus-date' : ''}"></div>
+        <div class="card-number">
+            {#each fakeMassNumber as string, i}
+                {#if i == 4 || i == 9 || i == 14}
+                    <div class="digit-item">
+                        <div class="num {res.length > i ? 'not-active' : ''}"></div>
+                    </div>
+                {:else}
+                    <div class="digit-item">
+                        <div class="num {res.length > i ? 'not-active' : ''}">#</div>
+                        <div class="num {res.length > i ? 'active' : ''}">{res[i] || ""}</div>
+                    </div>
+                {/if}
+            {/each}
         </div>
         <div class="card-holders">
             <div class="placeholder {nameString.length == 0 ? 'active' : 'not-active'}">
                 IVAN IVANOV
             </div>
-
             {#each fakeMassName as string, i}
                 <div class="digit-item">
                     <div class="num {nameString.length < i ? 'not-active' : ''}"> </div>
                     <div class="num {nameString.length > i ? 'active' : ''}">{nameString[i] || ""}</div>
                 </div>
             {/each}
-
         </div>
-        <div class="card-months" bind:this={cardMonths}>
-            <div class="month">MM</div>
+        <div class="card-month-wrap">
+            <div class="card-month" style="transform: translateY({offset}px)">
+                {#each monthMass as item}
+                    <div class="month">
+                        {item}
+                    </div>
+                {/each}
+            </div>
         </div>
         <div class="slash">/</div>
-        <div class="card-year" bind:this={cardYear}>
-            <div class="year">ГГ</div>
+        <div class="card-year-wrap">
+            <div class="card-year" style="transform: translateY({offset2}px)">
+                {#each yearMass as item}
+                    <div class="year">
+                        {item.substr(-2)}
+                    </div>
+                {/each}
+            </div>
         </div>
         <div class="card-fake-number" on:mousedown="{(e) => {e.preventDefault();thisNumber.focus();}}"></div>
         <div class="card-fake-holder" on:mousedown="{(e) => {e.preventDefault();thisHolder.focus();}}"></div>
         <div class="card-fake-month" on:mousedown="{(e) => {e.preventDefault();thisMonth.focus();}}"></div>
         <div class="card-fake-year" on:mousedown="{(e) => {e.preventDefault();thisYear.focus();}}"></div>
     </div>
-    <div class="card-back">
-        <div class="card-item-band"></div>
-        <div class="card-item-cvv">
-            {#each cvvString as cvvDigit}
-                <div class="star">*</div>
-            {/each}
+    <div class="wrap-card-back">
+        <div class="card-back">
+            <div class="card-item-band"></div>
+            <div class="card-item-cvv">
+                {#each cvvString as cvvDigit}
+                    <div class="star">*</div>
+                {/each}
+            </div>
+            <div class="cvv-label">CVV</div>
         </div>
-        <div class="cvv-label">CVV</div>
     </div>
 </div>
 
 <form name="myform" class="input-field">
     <input type="text" class="input-number" id="cardcode" placeholder="Номер карты" on:focus={focusNumber}
-    on:blur={deactive} bind:this={thisNumber}>
+    on:blur={deactive} bind:this={thisNumber} on:input={formatCardCode}>
     <input type="text" class="input-name" id="cardcode2" placeholder="Имя Фамилия" on:focus={focusName}
-    on:blur={deactive} bind:this={thisHolder}>
-    <select id="cardcode3" class="three" on:focus={focusDate} on:blur={deactive} bind:this={thisMonth}>
+    on:blur={deactive} bind:this={thisHolder} on:input={inputName}>
+    <select id="cardcode3" class="three" on:focus={focusDate} on:blur={deactive} bind:this={thisMonth} on:change={changeMonth}>
         <option selected disabled>Месяц</option>
-        <option>01</option>
-        <option>02</option>
-        <option>03</option>
-        <option>04</option>
-        <option>05</option>
-        <option>06</option>
-        <option>07</option>
-        <option>08</option>
-        <option>09</option>
-        <option>10</option>
-        <option>11</option>
-        <option>12</option>
+        {#each massMonth as month, i}
+            <option>{month}</option>
+        {/each}
     </select>
-    <select id="cardcode4" class="three" on:focus={focusDate} on:blur={deactive} bind:this={thisYear}>
+    <select id="cardcode4" class="three" on:focus={focusDate} on:blur={deactive} bind:this={thisYear}
+    on:change={changeYear}>
         <option selected disabled>Год</option>
-        <option>2019</option>
-        <option>2020</option>
-        <option>2021</option>
-        <option>2022</option>
-        <option>2023</option>
-        <option>2024</option>
-        <option>2025</option>
-        <option>2026</option>
-        <option>2027</option>
-        <option>2028</option>
-        <option>2029</option>
-        <option>2030</option>
+        {#each massYear as year}
+            <option>{year}</option>
+        {/each}
     </select>
     <input type="text" id="cardcode5" placeholder="CVV" on:focus={active} on:blur={deactive} maxlength="4"
-    class="three">
-    <input type=hidden name=number value="">
+    class="three" on:input={cvv} bind:this={thisCvv}>
+    <input type=hidden name=number value="" bind:this={numberr}>
     <button type="submit">Отправить</button>
 </form>
