@@ -531,12 +531,12 @@
             {#each fakeMassNumber as string, i}
                 {#if i == 4 || i == 9 || i == 14}
                     <div class="digit-item">
-                        <div class="num {res.length > i ? 'not-active' : ''}"></div>
+                        <div class="num" class:not-active={res.length > i}></div>
                     </div>
                 {:else}
                     <div class="digit-item">
-                        <div class="num {res.length > i ? 'not-active' : ''}">#</div>
-                        <div class="num {res.length > i ? 'active' : ''}">{res[i] || ""}</div>
+                        <div class="num" class:not-active={res.length > i}>#</div>
+                        <div class="num" class:active={res.length > i}>{res[i] || ""}</div>
                     </div>
                 {/if}
             {/each}
@@ -547,8 +547,8 @@
             </div>
             {#each fakeMassName as string, i}
                 <div class="digit-item">
-                    <div class="num {nameString.length < i ? 'not-active' : ''}"> </div>
-                    <div class="num {nameString.length > i ? 'active' : ''}">{nameString[i] || ""}</div>
+                    <div class="num" class:not-active={nameString.length < i}> </div>
+                    <div class="num" class:active={nameString.length > i}>{nameString[i] || ""}</div>
                 </div>
             {/each}
         </div>
