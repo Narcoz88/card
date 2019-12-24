@@ -1,24 +1,24 @@
 <script >
     import { onMount } from 'svelte';
-    let res = [];
-    let nameString = [];
-    let cvvString = [];
-    let on = false;
-    let numberFocus = false;
-    let nameFocus = false;
-    let dateFocus = false;
-    let monthMass = ["MM"];
-    let yearMass = ["ГГ"];
-    let thisNumber;
-    let thisHolder;
-    let thisCvv;
-    let thisMonth;
-    let thisYear;
-    let fakeMassNumber = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
-    let fakeMassName = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
-    let massMonth = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"];
-    let massYear = [2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030];
-    let numberr;
+    let res = [],
+        nameString = [],
+        cvvString = [],
+        on = false,
+        numberFocus = false,
+        nameFocus = false,
+        dateFocus = false,
+        monthMass = ["MM"],
+        yearMass = ["ГГ"],
+        thisNumber,
+        thisHolder,
+        thisCvv,
+        thisMonth,
+        thisYear,
+        fakeMassNumber = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19],
+        fakeMassName = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+        massMonth = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"],
+        massYear = [2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030],
+        numberr;
 
     const formatCardCode = () => {
        let cardCode = thisNumber.value.replace(/[^\d]/g, '').substring(0,16);
@@ -37,31 +37,24 @@
        });
    }
 
-   const inputName = () => {
-       nameString = thisHolder.value.split("");
-   }
+   const inputName = () => nameString = thisHolder.value.split("");
 
-   const cvv = () => {
-       cvvString = thisCvv.value.split("");
-   }
+   const cvv = () => cvvString = thisCvv.value.split("");
 
-   const changeMonth = ({ target: { value }}) => {
-  	 monthMass = [ ...monthMass, value ]
-   }
+   const changeMonth = ({ target: { value }}) => monthMass = [ ...monthMass, value ];
+
 
    $: offset = monthMass && monthMass.length > 1 ? offset - 24 : 0;
 
-   const changeYear = ({ target: { value }}) => {
-     yearMass = [ ...yearMass, value ]
-   }
+   const changeYear = ({ target: { value }}) => yearMass = [ ...yearMass, value ];
 
    $: offset2 = yearMass && yearMass.length > 1 ? offset2 - 24 : 0;
 
-    const active = () => {on = true}
-    const deactive = () => {on = false; numberFocus = false; nameFocus = false; dateFocus = false}
-    const focusNumber = () => {numberFocus = true}
-    const focusName = () => {nameFocus = true}
-    const focusDate = () => {dateFocus = true}
+    const active = () => on = true;
+    const deactive = () => {on = false; numberFocus = false; nameFocus = false; dateFocus = false};
+    const focusNumber = () => numberFocus = true;
+    const focusName = () => nameFocus = true;
+    const focusDate = () => dateFocus = true;
 
 </script>
 
