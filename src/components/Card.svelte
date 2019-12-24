@@ -43,18 +43,17 @@
 
    const changeMonth = ({ target: { value }}) => monthMass = [ ...monthMass, value ];
 
-
-   $: offset = monthMass && monthMass.length > 1 ? offset - 24 : 0;
+   $: offsetMonth = monthMass && monthMass.length > 1 ? offsetMonth - 24 : 0;
 
    const changeYear = ({ target: { value }}) => yearMass = [ ...yearMass, value ];
 
-   $: offset2 = yearMass && yearMass.length > 1 ? offset2 - 24 : 0;
+   $: offsetYear = yearMass && yearMass.length > 1 ? offsetYear - 24 : 0;
 
-    const active = () => on = true;
-    const deactive = () => {on = false; numberFocus = false; nameFocus = false; dateFocus = false};
-    const focusNumber = () => numberFocus = true;
-    const focusName = () => nameFocus = true;
-    const focusDate = () => dateFocus = true;
+   const active = () => on = true;
+   const deactive = () => {on = false; numberFocus = false; nameFocus = false; dateFocus = false};
+   const focusNumber = () => numberFocus = true;
+   const focusName = () => nameFocus = true;
+   const focusDate = () => dateFocus = true;
 
 </script>
 
@@ -86,6 +85,8 @@
         transform-style: preserve-3d;
         backface-visibility: hidden;
         margin: 0 auto 30px;
+        position: relative;
+        z-index: 5;
     }
     .wrap-card-back {
         width: 100%;
@@ -438,10 +439,7 @@
         -o-transition: all 0.3s;
         transition: all 0.3s !important;
     }
-    .month.up,
-    .year.up {
-        margin-top: -24px !important;
-    }
+
     .focus {
         position: absolute;
         top: 0;
@@ -460,7 +458,7 @@
         transition: all 0.5s;
         opacity: 0;
     }
-    .focus.focus-number {
+    .focus.numberFocus {
         top: 161px;
         left: 41px;
         width: 367px;
@@ -469,7 +467,7 @@
         -webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;
         opacity: 1;
     }
-    .focus.focus-name {
+    .focus.nameFocus {
         top: 206px;
         left: 29px;
         width: 257px;
@@ -478,7 +476,7 @@
         -webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;
         opacity: 1;
     }
-    .focus.focus-date {
+    .focus.dateFocus {
         top: 206px;
         left: 330px;
         width: 95px;
@@ -528,8 +526,7 @@
 
 <div class="wrap-card {on ? 'active' : ''}">
     <div class="card">
-        <div class="focus {numberFocus ? 'focus-number' : ''} {nameFocus ? 'focus-name' : ''} {dateFocus ?
-        'focus-date' : ''}"></div>
+        <div class="focus" class:numberFocus class:nameFocus class:dateFocus></div>
         <div class="card-number">
             {#each fakeMassNumber as string, i}
                 {#if i == 4 || i == 9 || i == 14}
@@ -556,7 +553,7 @@
             {/each}
         </div>
         <div class="card-month-wrap">
-            <div class="card-month" style="transform: translateY({offset}px)">
+            <div class="card-month" style="transform: translateY({offsetMonth}px)">
                 {#each monthMass as item}
                     <div class="month">
                         {item}
@@ -566,7 +563,7 @@
         </div>
         <div class="slash">/</div>
         <div class="card-year-wrap">
-            <div class="card-year" style="transform: translateY({offset2}px)">
+            <div class="card-year" style="transform: translateY({offsetYear}px)">
                 {#each yearMass as item}
                     <div class="year">
                         {item.substr(-2)}

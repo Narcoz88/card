@@ -4,24 +4,9 @@
     <list default="true" id="63a1ed41-06a6-4846-a18d-5c90ad191024" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/__sapper__/dev/build.json" beforeDir="false" afterPath="$PROJECT_DIR$/__sapper__/dev/build.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__sapper__/dev/client/[slug].7432bf4e.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__sapper__/dev/client/[slug].7432bf4e.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__sapper__/dev/client/about.ff0dad73.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__sapper__/dev/client/client.b5c0123e.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__sapper__/dev/client/client.b5c0123e.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__sapper__/dev/client/index.6612a295.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__sapper__/dev/client/index.6612a295.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__sapper__/dev/client/index.6aba3deb.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__sapper__/dev/client/index.7c4655b2.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__sapper__/dev/client/index.7c4655b2.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__sapper__/dev/client/main.1279100824.css" beforeDir="false" afterPath="$PROJECT_DIR$/__sapper__/dev/client/main.1279100824.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__sapper__/dev/client/sapper-dev-client.89e34bae.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/__sapper__/dev/server/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/__sapper__/dev/server/server.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/__sapper__/dev/service-worker.js" beforeDir="false" afterPath="$PROJECT_DIR$/__sapper__/dev/service-worker.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Card.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Card.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/node_modules/@sapper/internal/App.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/node_modules/@sapper/internal/App.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/node_modules/@sapper/internal/manifest-client.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/src/node_modules/@sapper/internal/manifest-client.mjs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/node_modules/@sapper/internal/manifest-server.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/src/node_modules/@sapper/internal/manifest-server.mjs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/node_modules/@sapper/service-worker.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/node_modules/@sapper/service-worker.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -38,8 +23,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/Card.svelte">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="49" selection-start-line="49" selection-end-line="49" />
+            <state relative-caret-position="261">
+              <caret line="528" column="83" lean-forward="true" selection-start-line="528" selection-start-column="83" selection-end-line="528" selection-end-column="83" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#3;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#5;n#div#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -68,6 +57,7 @@
       <find>last</find>
       <find>thisNumber</find>
       <find>thisMonth</find>
+      <find>offset</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -189,12 +179,12 @@
       <workItem from="1575882545805" duration="48408000" />
       <workItem from="1576140987529" duration="66027000" />
       <workItem from="1577102951870" duration="37000" />
-      <workItem from="1577198537404" duration="900000" />
+      <workItem from="1577198537404" duration="2188000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="212607000" />
+    <option name="totallyTimeSpent" value="213895000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1928" y="-8" width="1936" height="1056" extended-state="6" />
@@ -356,8 +346,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Card.svelte">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="49" selection-start-line="49" selection-end-line="49" />
+        <state relative-caret-position="261">
+          <caret line="528" column="83" lean-forward="true" selection-start-line="528" selection-start-column="83" selection-end-line="528" selection-end-column="83" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#3;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#5;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
